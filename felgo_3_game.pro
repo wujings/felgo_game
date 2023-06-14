@@ -60,4 +60,8 @@ macx {
 }
 
 DISTFILES += \
-    qml/GameScene.qml
+    qml/Controller.qml \
+    qml/GameScene.qml \
+    qml/entities/Goomba.qml \
+    qml/entities/Monster.qml \
+    qml/entities/Troopa.qml

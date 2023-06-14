@@ -8,7 +8,7 @@ import"levels"
 Scene {
     width: 480
     height: 320
-    gridSize: 32
+    gridSize: 24
 
     property int offsetBeforeScrollingStarts: 240
 
@@ -38,7 +38,7 @@ Scene {
       PhysicsWorld {
         id: physicsWorld
         gravity: Qt.point(0, 25)
-        debugDrawVisible: false // enable this for physics debugging
+        debugDrawVisible: true // enable this for physics debugging
         z: 1000
 
         onPreSolve: {
@@ -119,8 +119,8 @@ Scene {
 
     Rectangle {
       // same as the above input control
-      //visible: !system.desktopPlatform
-      //enabled: visible
+      visible: !system.desktopPlatform
+      enabled: visible
       anchors.left: parent.left
       anchors.bottom: parent.bottom
       height: 100

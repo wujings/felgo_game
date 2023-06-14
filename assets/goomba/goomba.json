@@ -1,0 +1,36 @@
+{"frames": {
+
+"goomba-00.png":
+{
+	"frame": {"x":1,"y":1,"w":18,"h":18},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":12,"w":18,"h":18},
+	"sourceSize": {"w":26,"h":30}
+},
+"goomba-01.png":
+{
+	"frame": {"x":1,"y":21,"w":18,"h":18},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":12,"w":18,"h":18},
+	"sourceSize": {"w":26,"h":30}
+},
+"goomba-02.png":
+{
+	"frame": {"x":1,"y":41,"w":18,"h":11},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":19,"w":18,"h":11},
+	"sourceSize": {"w":26,"h":30}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "goomba.png",
+	"format": "RGBA8888",
+	"size": {"w":20,"h":53},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b40757c22bdcf95f70b01bd0036da778:e44840675720a3afe22a9eacf8dfa4d9:3a3dd894d17489f9079437d8de845266$"
+}
+}

@@ -9,21 +9,25 @@ Levels.LevelBase {
   width: 42 * gameScene.gridSize // 42 because our last tile is a size 30 Ground at row 12
 
   // you could draw your level on a graph paper and then add the tiles here only by defining their row, column and size
+  Goomba{
+      x: 30
+      y: 100
+  }
   Ground {
     row: 0
     column: 0
-    size: 42
+    size: 7
   }
-//  Ground {
-//    row: 8
-//    column: 0
-//    size: 2
-//  }
-//  Platform {
-//    row: 3
-//    column: 3
-//    size: 4
-//  }
+  Ground {
+    row: 8
+    column: 0
+    size: 2
+  }
+  Platform {
+    row: 3
+    column: 3
+    size: 4
+  }
 //  Platform {
 //    row: 7
 //    column: 6

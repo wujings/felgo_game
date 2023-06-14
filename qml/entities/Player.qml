@@ -8,22 +8,32 @@ EntityBase {
   height: 28
 
   // add some aliases for easier access to those properties from outside
-  property alias collider: collider
-   property alias horizontalVelocity: collider.linearVelocity.x
-
-  property int contacts: 0
+    property alias collider: collider
+    property alias horizontalVelocity: collider.linearVelocity.x
+    property alias mirror: marioSSprite.mirror
+    property int contacts: 0
   // property binding to determine the state of the player like described above
   state: contacts > 0 ? "walking" : "jumping"
   onStateChanged: console.debug("player.state " + state)
 
-  TexturePackerAnimatedSprite  {
-    id: mario_small
-    source: "../../assets/marioS/marioS.json"
-    frameNames: ["marioS-0.png", "marioS-1.png", "marioS-2.png", "marioS-3.png"]
-    interpolate: false
+  TexturePackerSpriteSequence {
+    id: marioSSprite
     anchors.centerIn: parent
-    frameRate: 3
-  }
+
+    TexturePackerSprite {
+      name: "walk"
+      source: "../../assets/marioS/marioS.json"
+      frameNames: ["marioS-0.png", "marioS-1.png", "marioS-2.png", "marioS-3.png"]
+      frameRate: 4
+    }
+    TexturePackerSprite {
+      name: "jump"
+      source: "../../assets/marioS//img/marioS.json"
+      frameNames: ["marioS-0.png", "marioS-1.png", "marioS-2.png", "marioS-3.png"]
+      to: {"jump": 1, "walk": 3}
+      frameRate: 4
+    }
+  }// TexturePackerSpriteSequence
   BoxCollider {
     id: collider
     height: parent.height
@@ -40,6 +50,10 @@ EntityBase {
     onLinearVelocityChanged: {
       if(linearVelocity.x > 170) linearVelocity.x = 170
       if(linearVelocity.x < -170) linearVelocity.x = -170
+    }
+    fixture.onBeginContact:{
+        var otherEntiry = other.getBody().target
+        console.log("contact event happen")
     }
   }
 
@@ -68,6 +82,9 @@ EntityBase {
       collider.linearVelocity.y = -420
     }
   }
-
+  function die(){
+      jump()
+      collider.linearVelocity.x =0
+  }
 }
 
