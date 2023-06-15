@@ -60,6 +60,7 @@ macx {
 }
 
 DISTFILES += \
+    qml/AudioPlayer.qml \
     qml/Controller.qml \
     qml/GameScene.qml \
     qml/entities/Goomba.qml \

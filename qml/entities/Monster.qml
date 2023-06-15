@@ -6,17 +6,31 @@ EntityBase {
   //base class of enemy
 //enabled:
   entityType: "opponent"
-
+  signal contact
   property int column
   property int row
   x:(column-1)*gameScene.gridSize
   y:gameScene.gridSize*20 - row*gameScene.gridSize
 
+  property bool hidden: false
   property bool alive: true
+  property int direction:-1
 
-
+  Timer {
+    id: hideTimer
+    interval: 2000
+    onTriggered: hidden = true
+  }
   function getShot() {
-    visible = false
+      alive = false
+
+      hideTimer.start()
+
+      if(variationType == "Goomba")
+        audioPlayer.playSound("GoombaDie")
+
+      // for every killed opponent, the time gets set back a little bit
+//      gameScene.time -= 5
   }
 
 }

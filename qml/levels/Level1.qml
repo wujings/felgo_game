@@ -10,7 +10,7 @@ Levels.LevelBase {
 
   // you could draw your level on a graph paper and then add the tiles here only by defining their row, column and size
   Goomba{
-      x: 30
+      x: 40
       y: 100
   }
   Ground {

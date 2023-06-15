@@ -7,24 +7,6 @@ TiledEntityBase {
 
   size: 2 // must be >= 2, because we got a sprite for the start, one for the end and a repeatable center sprite
 
-//  Row {
-//    id: tileRow
-//    Tile {
-//      pos: "left"
-//      image: "../../assets/ground/left.png"
-//    }
-//    Repeater {
-//      model: size-2
-//      Tile {
-//        pos: "mid"
-//        image: "../../assets/ground/mid.png"
-//      }
-//    }
-//    Tile {
-//      pos: "right"
-//      image: "../../assets/ground/right.png"
-//    }
-//  }
 
  Row{
           id: tileRow

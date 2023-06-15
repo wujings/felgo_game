@@ -9,4 +9,7 @@ GameWindow {
    GameScene {
     id: gameScene
   }
+   AudioPlayer{
+       id:audioPlayer
+   }
 }

@@ -4,14 +4,14 @@ import QtQuick 2.0
 EntityBase {
   id: player
   entityType: "player"
-  width: 30
-  height: 28
+  width: 28
+  height: 21
 
   // add some aliases for easier access to those properties from outside
     property alias collider: collider
     property alias horizontalVelocity: collider.linearVelocity.x
-    property alias mirror: marioSSprite.mirror
     property int contacts: 0
+    property bool alive: true
   // property binding to determine the state of the player like described above
   state: contacts > 0 ? "walking" : "jumping"
   onStateChanged: console.debug("player.state " + state)
@@ -34,10 +34,17 @@ EntityBase {
       frameRate: 4
     }
   }// TexturePackerSpriteSequence
+  function changeDirection(){
+      if(controller.xAxis == 1)
+          marioSSprite.mirror = false
+      if(controller.xAxis == -1)
+          marioSSprite.mirror = true
+  }
+
   BoxCollider {
     id: collider
     height: parent.height
-    width: 30
+    width: 18
     anchors.horizontalCenter: parent.horizontalCenter
     // this collider must be dynamic because we are moving it by applying forces and impulses
     bodyType: Body.Dynamic // this is the default value but I wanted to mention it ;)
@@ -51,17 +58,25 @@ EntityBase {
       if(linearVelocity.x > 170) linearVelocity.x = 170
       if(linearVelocity.x < -170) linearVelocity.x = -170
     }
-    fixture.onBeginContact:{
-        var otherEntiry = other.getBody().target
-        console.log("contact event happen")
+    fixture.onBeginContact:{//contacts with other entities
+        var otherEntity = other.getBody().target
+        switch (otherEntity){
+            case (Goomba):
+                console.log("contact Goomba")
+                player.die()
+
+            default :
+                console.log("contact event happen")
+        }
     }
+
   }
 
   // this timer is used to slow down the players horizontal movement. the linearDamping property of the collider works quite similar, but also in vertical direction, which we don't want to be slowed
   Timer {
     id: updateTimer
     // set this interval as high as possible to improve performance, but as low as needed so it still looks good
-    interval: 60
+    interval: 55
     running: true
     repeat: true
     onTriggered: {
@@ -84,6 +99,7 @@ EntityBase {
   }
   function die(){
       jump()
+      alive = false
       collider.linearVelocity.x =0
   }
 }
