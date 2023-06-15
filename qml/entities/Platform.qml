@@ -7,25 +7,35 @@ TiledEntityBase {
 
   size: 2 // must be >= 2 and even (2,4,6,...), because we got a sprite for the start, one for the end and 2 center sprites that are only repeatable if both are used
 
-  Row {
-    id: tileRow
-    Tile {
-      pos: "left"
-      image: "../../assets/platform/left.png"
-    }
-    Repeater {
-      model: size-2
-      Tile {
-        pos: "mid"
-        image: "../../assets/platform/mid" + index%2 + ".png"
-      }
-    }
-    Tile {
-      pos: "right"
-      image: "../../assets/platform/right.png"
-    }
-  }
-
+//  Row {
+//    id: tileRow
+//    Tile {
+//      pos: "left"
+//      image: "../../assets/platform/left.png"
+//    }
+//    Repeater {
+//      model: size-2
+//      Tile {
+//        pos: "mid"
+//        image: "../../assets/platform/mid" + index%2 + ".png"
+//      }
+//    }
+//    Tile {
+//      pos: "right"
+//      image: "../../assets/platform/right.png"
+//    }
+//  }
+  Row{
+           id: tileRow
+           Repeater{
+               model: size
+               MultiResolutionImage{
+                   width: gameScene.gridSize
+                   height: gameScene.gridSize
+                   source: "../../assets/tiles/block.png"
+               }
+           }
+       }
   BoxCollider {
     id: collider
     anchors.fill: parent

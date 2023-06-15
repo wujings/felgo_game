@@ -33,23 +33,23 @@ TiledEntityBase {
               MultiResolutionImage{
                   width: gameScene.gridSize
                   height: gameScene.gridSize
-                  source: "../../assets/tiles/ground.png"
+                  source: "../../assets/tiles/field.png"
               }
           }
       }
-      Repeater{
-          model: heightSize-1
-          Row{
-              Repeater{
-                  model: widthSize
-                  MultiResolutionImage{
-                      width: gameScene.gridSize
-                      height: gameScene.gridSize
-                      source:dirt
-                  }
-              }
-          }
-      }
+//      Repeater{
+//         model: heightSize-1
+//          Row{
+//              Repeater{
+//                  model: widthSize
+//                  MultiResolutionImage{
+//                      width: gameScene.gridSize
+//                      height: gameScene.gridSize
+//                      source:"../../assets/tiles/dirt"
+//                  }
+//              }
+//          }
+//      }
   BoxCollider {
     anchors.fill: parent
     bodyType: Body.Static
