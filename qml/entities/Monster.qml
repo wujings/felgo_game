@@ -5,7 +5,7 @@ EntityBase {
   id: monster
   //base class of enemy
 //enabled:
-  entityType: "opponent"
+  entityType: "monster"
   signal contact
   property int column
   property int row
@@ -32,5 +32,10 @@ EntityBase {
       // for every killed opponent, the time gets set back a little bit
 //      gameScene.time -= 5
   }
-
+  function die(){
+     player. jump()
+      console.debug("monster die")
+      alive = false
+      collider.linearVelocity.x =0
+  }
 }

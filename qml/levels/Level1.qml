@@ -13,6 +13,10 @@ Levels.LevelBase {
       x: 40
       y: 100
   }
+  Coin{
+      x: 50
+      y: 50
+  }
   Ground {
     row: 0
     column: 0

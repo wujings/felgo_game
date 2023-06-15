@@ -2,7 +2,7 @@ import QtQuick 2.0
 import Felgo 3.0
 import"entities"
 import"levels"
-
+import"common"
 // EMPTY SCENE
 
 Scene {

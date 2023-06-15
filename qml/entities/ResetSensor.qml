@@ -17,6 +17,7 @@ EntityBase {
   BoxCollider {
     anchors.fill: parent
     collisionTestingOnlyMode: true
+    categories: Box.Category7
     fixture.onBeginContact: {
       var otherEntity = other.getBody().target
       // if the player hits the sensor, we emit a signal which will be used to reset the player
