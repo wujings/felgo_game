@@ -4,6 +4,8 @@ import Felgo 3.0
 Monster{
     id:goomba
     entityType: "goomba"
+    property int speed:60
+    //the sprire sheet
     TexturePackerSpriteSequence {
         id: sprite
         TexturePackerSprite {
@@ -20,6 +22,7 @@ Monster{
             frameRate: 5
         }
     }
+    //the collider logical
     PolygonCollider {
       id: collider
       // the vertices, forming the shape of the collider
@@ -32,13 +35,26 @@ Monster{
       bodyType: Body.Dynamic
       // Category3: opponent body
       categories: Box.Category3
-      collidesWith: Box.Category1 | Box.Category2| Box.Category5
+      collidesWith: Box.Category1 | Box.Category2| Box.Category5//1:player 2:player kill area 5:scene
+      linearVelocity: Qt.point(direction * speed, 0)
+
+      onLinearVelocityChanged: {
+        // if the opponent stops moving, reverse direction
+        if(linearVelocity.x === 0)
+          direction *= -1
+
+        // make sure the speed is constant
+        linearVelocity.x = direction * speed
+      }
+
     }
+    //hide afterdead timer
     Timer {
       id: hideTimer
       interval: 2000
       onTriggered: hidden = true
     }
+    //call when die
     function getShot() {
            alive = false
     //        audioPlayer.playSound("GoombaDie")
@@ -51,6 +67,7 @@ Monster{
         // for every killed opponent, the time gets set back a little bit
         //      gameScene.time -= 5
     }
+    //abandon collider
 //    BoxCollider{
 //        id:contactCollider
 //        active: collider.active
@@ -67,5 +84,6 @@ Monster{
 //        fixture.onBeginContact: contacts++
 //        fixture.onEndContact: if(contacts > 0) contacts--
 //    }
+
 }
 

@@ -15,7 +15,8 @@ EntityBase {
     property bool hidden: false
     property bool alive: true
     property int direction:-1
-    width: image.width
-    height: image.height
+
+//    width: image.width
+//    height: image.height
 
 }

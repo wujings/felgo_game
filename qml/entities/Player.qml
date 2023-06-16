@@ -90,7 +90,7 @@ EntityBase {
   }
   BoxCollider{
       id:killCollider
-      width:18
+      width:10
       height: 5
 
       collisionTestingOnlyMode: true
