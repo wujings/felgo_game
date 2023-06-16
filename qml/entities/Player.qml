@@ -14,90 +14,40 @@ EntityBase {
     property int healthPoint:1
     property bool alive: true
   // property binding to determine the state of the player like described above
-  state: contacts > 0 ? "walking" : "jumping"
-  onStateChanged: console.debug("player.state " + state)
-  MultiResolutionImage {
-    id: img
-    source: "marioS-0.png"
+    state: "standing"
+    onStateChanged: console.debug("player.state " + state)
+//  MultiResolutionImage {
+//    id: img
+//    source: "marioS-0.png"
 
-  }
+//  }
   TexturePackerSpriteSequence {
-    id: marioSSprite
+    id: sprite
     anchors.centerIn: parent
     TexturePackerSprite {
       name: "stand"
       source: "../../assets/marioS/marioS.json"
-      frameNames: ["marioS-0.png"]
+      frameNames: "marioS-0.png"
     }
+
     TexturePackerSprite {
       name: "walk"
       source: "../../assets/marioS/marioS.json"
       frameNames: ["marioS-0.png", "marioS-1.png", "marioS-2.png", "marioS-3.png"]
-      frameRate: 4
+      to: { "stand": 3}
+      frameRate: 5
     }
     TexturePackerSprite {
       name: "jump"
-      source: "../../assets/marioS//img/marioS.json"
+      source: "../../assets/marioS/marioS.json"
       frameNames: ["marioS-0.png", "marioS-1.png", "marioS-2.png", "marioS-3.png"]
-      to: {"jump": 1, "walk": 3}
-      frameRate: 4
+      to: {"jump": 1, "stand": 2}
+      frameRate: 5
     }
-
-//    Keys.onPressed:{
-//        switch(event.key)
-//        {
-//        case Qt.Key_Up:
-//            marioSSprite.jumpTo("jump");
-//            marioSSprite.running=true
-//            break;
-//        case Qt.Key_Left:
-//            marioSSprite.jumpTo("walk");
-//            marioSSprite.running=true
-//            break;
-//        }
-//    }
-
   }
-  function changeDirection(){
-      if(controller.xAxis == 1)
-          marioSSprite.mirror = false
-      if(controller.xAxis == -1)
-          marioSSprite.mirror = true
-  }
-//PolygonCollider{
-//id:collider
-//anchors.horizontalCenter: parent.horizontalCenter
-//anchors.verticalCenter: parent.verticalCenter
-//    vertices:[
-//        Qt.point(0,0), // top left
-//        Qt.point(0, 18), // bottom left
-//        Qt.point(25, 18), // bottom right
-//        Qt.point(25, 0) // top right
-//    ]
-//    categories: Box.Category1
-//    // Category3: opponent body, Category5: solids,
-//    // Category6: powerups, Category7: reset sensor
-//    collidesWith: Box.Category3 | Box.Category5 | Box.Category6 | Box.Category7
-//    bullet: true
-//    sleepingAllowed: false
-//    // apply the horizontal value of the TwoAxisController as force to move the player left and right
-//    force: Qt.point(controller.xAxis*170*32,0)
-//    // limit the horizontal velocity
-//    onLinearVelocityChanged: {
-//      if(linearVelocity.x > 170) linearVelocity.x = 170
-//      if(linearVelocity.x < -170) linearVelocity.x = -170
-//    }
-//    fixture.onBeginContact:{//contacts with other entities
-//        var otherEntity = other.getBody().target
-//        if (otherEntity.entityType ==="Goomba"){
-//                console.log("contact Goomba")
-//                player.die()
-//        }
-//        else
-//           console.log("contact with otherEntity")
-//    }
-//}
-  BoxCollider {
+
+
+    BoxCollider {
         id: collider
         height: parent.height
         width: 18
@@ -114,51 +64,52 @@ EntityBase {
         bullet: true
         sleepingAllowed: false
         // apply the horizontal value of the TwoAxisController as force to move the player left and right
-        force: Qt.point(controller.xAxis*170*32,0)
+        force: Qt.point(controller.xAxis*130*24,0)
         // limit the horizontal velocity
         onLinearVelocityChanged: {
-        if(linearVelocity.x > 170) linearVelocity.x = 170
-        if(linearVelocity.x < -170) linearVelocity.x = -170
+            player.state = "walking"
+            if(linearVelocity.x > 130) linearVelocity.x = 130
+            if(linearVelocity.x < -130) linearVelocity.x = -130
         }
         fixture.onBeginContact: {
         var otherEntity = other.getBody().target
-            if(otherEntity.entityType === "coin"){
-                console.debug("coins collect")
-                otherEntity.collect()
-            }
-            else if(otherEntity.entityType === "goomba") {
-                console.debug("contact goomba begin")
+        if(otherEntity.entityType === "coin"){
+            console.debug("coins collect")
+            otherEntity.collect()
+        }
+        else if(otherEntity.entityType === "goomba") {
+//            console.debug("kill monster")
+//            otherEntity.getShot()
+//              jump()
+            console.debug("contact goomba begin")
+            if(otherEntity.alive === true)
                 player.die()
-                }
+
             }
+        }
   }
   BoxCollider{
       id:killCollider
       width:18
       height: 5
+
       collisionTestingOnlyMode: true
       anchors.horizontalCenter: parent.horizontalCenter
       anchors.top: parent.bottom
+
       bodyType: Body.Dynamic
+      active: collider.active
       categories: Box.Category2
-      collidesWith: Box.Category3 | Box.Category5
+      collidesWith: Box.Category3
 //      collisionTestingOnlyMode: true
 
       fixture.onBeginContact: {
         var otherEntity = other.getBody().target
         // if colliding with opponent...
-        if(otherEntity.entityType === "Monster") {
-          // ...calculate the lowest point of the player and the opponent...
-          var playerLowestY = player.y + player.height
-          var oppLowestY = otherEntity.y + otherEntity.height
-
-          // if the player's y position is at least5px above the opponent's...
-          if(playerLowestY < oppLowestY - 5) {
-            // ...kill opponent...
+        if(otherEntity.entityType === "goomba") {
             console.debug("kill monster")
-            otherEntity.die()
+            otherEntity.getShot()
               jump()
-          }
         }
         // else if colliding with another solid object...
       }
@@ -182,19 +133,33 @@ EntityBase {
     }
   }
 
-  function jump() {
-    console.debug("jump requested at player.state " + state)
-    if(player.state == "walking") {
-      console.debug("do the jump")
-      // for the jump, we simply set the upwards velocity of the collider
-      collider.linearVelocity.y = -420
+    function jump() {
+        console.debug("jump requested at player.state " + state)
+        if(player.state != "jumping") {
+            console.debug("do the jump")
+            // for the jump, we simply set the upwards velocity of the collider
+            collider.linearVelocity.y = -400
+        }
     }
-  }
-  function die(){
-      jump()
-      console.debug("player die")
-      alive = false
-      collider.linearVelocity.x =0
-  }
+    function die(){
+        jump()
+        console.debug("player die")
+        alive = false
+        collider.linearVelocity.x =0
+    }
+    function changeSprite(){
+        if(player.state==="walking")
+            sprite.jumpTo("walk")
+        else if(player.state==="jump")
+            sprite.jumpTo("jump")
+        else
+            sprite.jumpTo("stand")
+    }
+    function changeDirection(){
+        if(controller.xAxis == 1)
+            sprite.mirror = false
+        if(controller.xAxis == -1)
+            sprite.mirror = true
+    }
 }
 

@@ -2,13 +2,23 @@ import QtQuick 2.0
 import Felgo 3.0
 //basic and classic mario enemy Goomba
 Monster{
-id:goomba
-entityType: "goomba"
-    TexturePackerAnimatedSprite {
-       id:goombaSprite
-      source: "../../assets/goomba/goomba.json"
-      frameNames: ["goomba-00.png", "goomba-01.png"]
-      frameRate: 3
+    id:goomba
+    entityType: "goomba"
+    TexturePackerSpriteSequence {
+        id: sprite
+        TexturePackerSprite {
+            name: "walk"
+            source: "../../assets/goomba/goomba.json"
+            frameNames: ["goomba-00.png", "goomba-01.png"]
+            frameRate: 5
+        }
+
+        TexturePackerSprite {
+            name: "die"
+            source: "../../assets/goomba/goomba.json"
+            frameNames: "goomba-02.png"
+            frameRate: 5
+        }
     }
     PolygonCollider {
       id: collider
@@ -24,23 +34,38 @@ entityType: "goomba"
       categories: Box.Category3
       collidesWith: Box.Category1 | Box.Category2| Box.Category5
     }
-    BoxCollider{
-        id:contactCollider
-        active: collider.active
-        width: 18
-        height: 5
-        anchors.top: parent.bottom
-        anchors.left: parent.Center
-
-        // Category4: opponent sensor
-        categories: Box.Category4
-        // Category5: solids
-        collidesWith: Box.Category5
-        collisionTestingOnlyMode: true
-        property int contacts: 0
-        fixture.onBeginContact: contacts++
-        fixture.onEndContact: if(contacts > 0) contacts--
+    Timer {
+      id: hideTimer
+      interval: 2000
+      onTriggered: hidden = true
     }
+    function getShot() {
+           alive = false
+    //        audioPlayer.playSound("GoombaDie")
+            player. jump()
+            console.debug("goomba die")
+            sprite.jumpTo("die")
+            collider.linearVelocity.x =0
+            hideTimer.start()
 
+        // for every killed opponent, the time gets set back a little bit
+        //      gameScene.time -= 5
+    }
+//    BoxCollider{
+//        id:contactCollider
+//        active: collider.active
+//        width: 18
+//        height: 5
+//        anchors.horizontalCenter: collider.horizontalCenter
+//        anchors.top: collider.bottom
+//        // Category4: opponent sensor
+//        categories: Box.Category4
+//        // Category5: solids
+//        collidesWith: Box.Category5
+//        collisionTestingOnlyMode: true
+//        property int contacts: 0
+//        fixture.onBeginContact: contacts++
+//        fixture.onEndContact: if(contacts > 0) contacts--
+//    }
 }
 

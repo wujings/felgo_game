@@ -66,4 +66,5 @@ DISTFILES += \
     qml/entities/Coin.qml \
     qml/entities/Goomba.qml \
     qml/entities/Monster.qml \
-    qml/entities/Troopa.qml
+    qml/entities/Troopa.qml \
+    qml/forcePortraitLandscape.js

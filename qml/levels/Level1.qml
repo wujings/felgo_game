@@ -1,16 +1,20 @@
 import Felgo 3.0
 import QtQuick 2.0
 import "../entities"
+import "../common"
+
 import "." as Levels
 
 Levels.LevelBase {
   id: level
 
   width: 42 * gameScene.gridSize // 42 because our last tile is a size 30 Ground at row 12
-
+  AudioPlayer{
+      id:audioPlayer
+  }
   // you could draw your level on a graph paper and then add the tiles here only by defining their row, column and size
   Goomba{
-      x: 40
+      x: 60
       y: 100
   }
   Coin{

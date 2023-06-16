@@ -19,7 +19,7 @@ EntityBase {
       id: collider
 
       // make the collider a little smaller than the sprite
-      radius: parent.width / 2 - 3
+      radius: parent.width / 2
 
       // center collider
       x: 3

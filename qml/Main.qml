@@ -5,12 +5,10 @@ import"common"
 GameWindow {
    id: gameWindow
    activeScene: gameScene
+   screenWidth: 960
    screenHeight: 640
 
    GameScene {
     id: gameScene
   }
-   AudioPlayer{
-       id:audioPlayer
-   }
 }

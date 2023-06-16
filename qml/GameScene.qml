@@ -141,12 +141,15 @@ Scene {
     }
     Keys.forwardTo: controller
     TwoAxisController {
-      id: controller
-      onInputActionPressed: {
-        console.debug("key pressed actionName " + actionName)
-        if(actionName == "up") {
-          player.jump()
+        id: controller
+        onInputActionPressed: {
+            console.debug("key pressed actionName " + actionName)
+                player.changeSprite()
+                player.changeDirection()
+            if(actionName == "up") {
+                player.jump()
+                player.changeSprite()
+            }
         }
-      }
     }
 }
