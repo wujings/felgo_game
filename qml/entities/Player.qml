@@ -2,10 +2,10 @@ import Felgo 3.0
 import QtQuick 2.0
 
 EntityBase {
-  id: player
-  entityType: "player"
-  width: 28
-  height: 21
+    id: player
+    entityType: "player"
+    width: 28
+    height: 21
 
   // add some aliases for easier access to those properties from outside
     property alias collider: collider
@@ -13,6 +13,7 @@ EntityBase {
     property int contacts: 0
     property int healthPoint:1
     property bool alive: true
+    property int jumpCount:0
   // property binding to determine the state of the player like described above
     state: "standing"
     onStateChanged: console.debug("player.state " + state)
@@ -49,7 +50,7 @@ EntityBase {
 
     BoxCollider {
         id: collider
-        height: parent.height
+        height: 20
         width: 18
         anchors.horizontalCenter: parent.horizontalCenter
         // this collider must be dynamic because we are moving it by applying forces and impulses
@@ -59,7 +60,7 @@ EntityBase {
         fixedRotation: true
 
         categories: Box.Category1
-        collidesWith: Box.Category3 | Box.Category5 | Box.Category6 | Box.Category7
+        collidesWith: Box.Category3 | Box.Category5 | Box.Category6 | Box.Category7|Box.Category8
 
         bullet: true
         sleepingAllowed: false
@@ -106,8 +107,8 @@ EntityBase {
       fixture.onBeginContact: {
         var otherEntity = other.getBody().target
         // if colliding with opponent...
-        if(otherEntity.entityType === "goomba") {
-            console.debug("kill monster")
+        if(otherEntity.entityType === "goomba"||otherEntity.entityType === "troopa") {
+            console.debug("kill "+entityType)
             otherEntity.getShot()
               jump()
         }
@@ -117,28 +118,31 @@ EntityBase {
   }
 
   // this timer is used to slow down the players horizontal movement. the linearDamping property of the collider works quite similar, but also in vertical direction, which we don't want to be slowed
-  Timer {
-    id: updateTimer
-    // set this interval as high as possible to improve performance, but as low as needed so it still looks good
-    interval: 55
-    running: true
-    repeat: true
-    onTriggered: {
-      var xAxis = controller.xAxis;
-      // if xAxis is 0 (no movement command) we slow the player down until he stops
-      if(xAxis == 0) {
-        if(Math.abs(player.horizontalVelocity) > 10) player.horizontalVelocity /= 1.5
-        else player.horizontalVelocity = 0
-      }
+    Timer {
+        id: updateTimer
+        // set this interval as high as possible to improve performance, but as low as needed so it still looks good
+        interval: 55
+        running: true
+        repeat: true
+        onTriggered: {
+        var xAxis = controller.xAxis;
+        // if xAxis is 0 (no movement command) we slow the player down until he stops
+        if(xAxis == 0) {
+            if(Math.abs(player.horizontalVelocity) > 10)
+                player.horizontalVelocity /= 1.5
+            else
+                    player.horizontalVelocity = 0
+        }
+        }
     }
-  }
 
     function jump() {
         console.debug("jump requested at player.state " + state)
-        if(player.state != "jumping") {
+        if(player.jumpCount < 2) {
             console.debug("do the jump")
             // for the jump, we simply set the upwards velocity of the collider
             collider.linearVelocity.y = -400
+            jumpCount++
         }
     }
     function die(){
@@ -147,6 +151,7 @@ EntityBase {
         alive = false
         collider.linearVelocity.x =0
     }
+    //when player walk or jump change sprite
     function changeSprite(){
         if(player.state==="walking")
             sprite.jumpTo("walk")

@@ -5,10 +5,10 @@ import"../levels"
 import"../common"
 // EMPTY SCENE
 
-Scene {
-    width: 480
-    height: 320
+SceneBase {
+    id:gameScene
     gridSize: 24
+    opacity: 0
 
     property int offsetBeforeScrollingStarts: 240
 
@@ -16,15 +16,20 @@ Scene {
       id: entityManager
     }
 
-    // filled the screen with blue
+    Image {
+      anchors.fill: menuScene.gameWindowAnchorItem
+//      source: "../../assets/gameBackground.png"
+    }
+
+//     filled the screen with blue
     Rectangle {
       anchors.fill: gameScene.gameWindowAnchorItem
       color: "#74d6f7"
     }
+
 //    Text {
 //        text: "Felgo"
 //        color: "blue"
-
 //        anchors.centerIn: parent
 //    }
     // this is the moving item containing the level and player
@@ -55,7 +60,7 @@ Scene {
       }
 
 //       you could load your levels Dynamically with a Loader component here
-      Level1 {
+      LevelTest{
         id: level
       }
 

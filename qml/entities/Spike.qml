@@ -2,8 +2,8 @@ import QtQuick 2.0
 import Felgo 3.0
 
 TiledEntityBase {
-  id: platform
-  entityType: "platform"
+  id: spike
+  entityType: "spike"
 
   size: 2 // must be >= 2 and even (2,4,6,...), because we got a sprite for the start, one for the end and 2 center sprites that are only repeatable if both are used
 
@@ -14,7 +14,7 @@ TiledEntityBase {
                MultiResolutionImage{
                    width: gameScene.gridSize
                    height: gameScene.gridSize
-                   source: "../../assets/tiles/block.png"
+                   source: "../../assets/tiles/spike.png"
                }
            }
        }
@@ -22,25 +22,20 @@ TiledEntityBase {
     id: collider
     anchors.fill: parent
     bodyType: Body.Static
-    categories: Box.Category5
+    categories: Box.Category8 //spike
 
     fixture.onBeginContact: {
-        var otherEntity = other.getBody().target
-        if(otherEntity.entityType === "player") {
-            console.debug("contact platform begin")
-
-            // increase the number of active contacts the player has
-            player.contacts++
-            player.jumpCount = 0
-        }
+      var otherEntity = other.getBody().target
+      if(otherEntity.entityType === "player") {
+        console.debug("contact spike begin")
+        player.die()
+      }
     }
 
     fixture.onEndContact: {
       var otherEntity = other.getBody().target
       if(otherEntity.entityType === "player") {
         console.debug("contact platform end")
-        // if the player leaves a platform, we decrease its number of active contacts
-        player.contacts--
       }
     }
   }

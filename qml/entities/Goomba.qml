@@ -4,7 +4,7 @@ import Felgo 3.0
 Monster{
     id:goomba
     entityType: "goomba"
-    property int speed:60
+    property int speed:10
     //the sprire sheet
     TexturePackerSpriteSequence {
         id: sprite
@@ -56,16 +56,17 @@ Monster{
     }
     //call when die
     function getShot() {
-           alive = false
+       alive = false
     //        audioPlayer.playSound("GoombaDie")
-            player. jump()
-            console.debug("goomba die")
-            sprite.jumpTo("die")
-            collider.linearVelocity.x =0
-            hideTimer.start()
-
-        // for every killed opponent, the time gets set back a little bit
-        //      gameScene.time -= 5
+        collider.linearVelocity.x =0
+        player. jump()
+        console.debug("goomba die")
+        sprite.jumpTo("die")
+        collider.linearVelocity.x =0
+        goomba.entityDestroyed()
+        hideTimer.start()
+    // for every killed opponent, the time gets set back a little bit
+    //      gameScene.time -= 5
     }
     //abandon collider
 //    BoxCollider{
