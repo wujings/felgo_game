@@ -4,13 +4,12 @@ import Felgo 3.0
 EntityBase {
     id: monster
     //base class of enemy
-    //enabled:
     entityType: "monster"
     signal contact
     property int column
     property int row
-    x:(column-1)*gameScene.gridSize
-    y:gameScene.gridSize*20 - row*gameScene.gridSize
+    x: row*gameScene.gridSize
+    y: level.height - (column+1)*gameScene.gridSize
 
     property bool hidden: false
     property bool alive: true

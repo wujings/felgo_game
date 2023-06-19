@@ -3,9 +3,14 @@ import Felgo 3.0
 
 EntityBase {
 
+    property int column
+    property int row
+
+
+    x: row*gameScene.gridSize
+    y: level.height - (column+1)*gameScene.gridSize
     id: coin
     entityType: "coin"
-
     // this property is true when the player collected the coin
     property bool collected: false
     TexturePackerAnimatedSprite{

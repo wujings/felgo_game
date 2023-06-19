@@ -5,12 +5,12 @@ TiledEntityBase {
   id: qblock
   entityType: "qblock"
 
-  size: 2 // must be >= 2 and even (2,4,6,...), because we got a sprite for the start, one for the end and 2 center sprites that are only repeatable if both are used
+    widthSize:2
 
   Row{
            id: tileRow
            Repeater{
-               model: size
+               model: widthSize
                MultiResolutionImage{
                    width: gameScene.gridSize
                    height: gameScene.gridSize

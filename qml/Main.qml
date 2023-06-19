@@ -8,7 +8,7 @@ GameWindow {
     activeScene: gameScene
     screenWidth: 960
     screenHeight: 640
-    state: menu
+    state: "menu"
     GameScene {
         id: gameScene
     }

@@ -27,47 +27,29 @@ Levels.LevelBase {
   }
   Ground {
     row: 0
-    column: 0
-    size: 7
+    column: 1
+    widthSize: 7
+    heightSize: 2
   }
+
   Ground {
     row: 8
     column: 0
-    size: 2
+    widthSize: 2
   }
   Platform {
     row: 3
-    column: 3
-    size: 4
+    column: 5
+    widthSize: 4
   }
   Platform {
     row: 8
-    column: 8
-    size: 4
+    column: 9
+    widthSize: 4
   }
   Spike{
       row: 4
       column: 7
-      size:2
+      widthSize:2
   }
-//  Platform {
-//    row: 7
-//    column: 6
-//    size: 4
-//  }
-//  Platform {
-//    row: 11
-//    column: 3
-//    size: 2
-//  }
-//  Ground {
-//    row: 12
-//    column: 0
-//    size: 30
-//  }
-//  Platform {
-//    row: 17
-//    column: 3
-//    size: 10
-//  }
 }

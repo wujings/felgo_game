@@ -51,8 +51,14 @@ PolygonCollider {
 //hide afterdead timer
     Timer {
       id: hideTimer
-      interval: 2000
+      interval: 1500
       onTriggered: hidden = true
+    }
+    Timer{
+        id:jumpTimer
+        interval:1000
+//        autoplay:true
+        onTriggered:collider.linearVelocity.y = -300
     }
 //call when die
     function getShot() {

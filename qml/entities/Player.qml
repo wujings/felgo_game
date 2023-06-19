@@ -91,7 +91,7 @@ EntityBase {
   }
   BoxCollider{
       id:killCollider
-      width:10
+      width:12
       height: 5
 
       collisionTestingOnlyMode: true
@@ -116,7 +116,33 @@ EntityBase {
       }
 
   }
+  BoxCollider{
+      id:upCollider //this Collider is used to trigger qblock
+      width:12
+      height: 3
 
+      collisionTestingOnlyMode: true
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.top: parent.top
+
+      bodyType: Body.Dynamic
+      active: collider.active
+      categories: Box.Category2
+      collidesWith: Box.Category9
+//      collisionTestingOnlyMode: true
+
+      fixture.onBeginContact: {
+        var otherEntity = other.getBody().target
+        // if colliding with opponent...
+        if(otherEntity.entityType === "qblock") {
+            console.debug("contact qblock")
+//            otherEntity.getShot()
+//              jump()
+        }
+        // else if colliding with another solid object...
+      }
+
+  }
   // this timer is used to slow down the players horizontal movement. the linearDamping property of the collider works quite similar, but also in vertical direction, which we don't want to be slowed
     Timer {
         id: updateTimer

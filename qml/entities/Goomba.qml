@@ -51,8 +51,11 @@ Monster{
     //hide afterdead timer
     Timer {
       id: hideTimer
-      interval: 2000
-      onTriggered: hidden = true
+      interval: 500
+      onTriggered: {
+        hidden = true
+        goomba.destroy()
+      }
     }
     //call when die
     function getShot() {
@@ -62,9 +65,9 @@ Monster{
         player. jump()
         console.debug("goomba die")
         sprite.jumpTo("die")
-        collider.linearVelocity.x =0
-        goomba.entityDestroyed()
+//        goomba.entityDestroyed()
         hideTimer.start()
+
     // for every killed opponent, the time gets set back a little bit
     //      gameScene.time -= 5
     }
