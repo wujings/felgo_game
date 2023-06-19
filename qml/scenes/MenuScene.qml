@@ -7,13 +7,16 @@ SceneBase {
 
   // signal indicating that the gameScene should be displayed
   signal gameScenePressed
-
   // background image
   Image {
     anchors.fill: menuScene.gameWindowAnchorItem
 //    source: "../../assets/menuBackground.png"
   }
-
+  //     filled the screen with blue
+      Rectangle {
+        anchors.fill: menuScene.gameWindowAnchorItem
+        color: "#74d6f7"
+      }
   // column aligns its child components within a column
   Column {
     anchors.centerIn: parent
@@ -23,12 +26,14 @@ SceneBase {
     Rectangle {
       width: 150
       height: 50
-      color: "orange"
-      Image {
-        id: gameSceneButton
-//        source: "../../assets/playButton.png"
-        anchors.centerIn: parent
-      }
+      color: "#F0E68C"
+       Text{
+            text:"play"
+            anchors.centerIn: parent
+            color: "black"
+            font.pixelSize: 21
+       }
+
 
       MouseArea {
         id: gameSceneMouseArea
@@ -41,11 +46,17 @@ SceneBase {
     Rectangle {
       width: 150
       height: 50
-      color: "orange"
+      color: "#F0E68C"
       Image {
         id: optionSceneButton
-//        source: "../../assets/scoreButton.png"
+//        source: "../../assets/.png"
         anchors.centerIn: parent
+      }
+      Text{
+           text:"option"
+           anchors.centerIn: parent
+           color: "black"
+           font.pixelSize: 21
       }
       MouseArea {
         id: optionSceneMouseArea

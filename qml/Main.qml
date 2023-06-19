@@ -5,7 +5,7 @@ import"scenes"
 
 GameWindow {
     id: gameWindow
-    activeScene: gameScene
+    activeScene: menuScene
     screenWidth: 960
     screenHeight: 640
     state: "menu"

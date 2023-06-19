@@ -24,7 +24,7 @@ EntityBase {
       id: collider
 
       // make the collider a little smaller than the sprite
-      radius: parent.width / 2
+      radius: parent.width*2
 
       // center collider
       x: 3
@@ -41,6 +41,7 @@ EntityBase {
       collidesWith: Box.Category1
     }
     function collect(){
+        if(collected == false)
         collected = true
         img.visible = false
     }

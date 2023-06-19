@@ -14,33 +14,33 @@ Levels.LevelBase {
   }
   // you could draw your level on a graph paper and then add the tiles here only by defining their row, column and size
   Goomba{
-      x: 65
-      y: 100
+      row: 4
+      column: 6
   }
   Troopa{
       x:60
       y:100
   }
-  Coin{
-      row: 8
-      column: 6
-  }
+
   Ground {
     row: 0
     column: 1
-    widthSize: 7
+    widthSize: 9
     heightSize: 2
   }
 
   Ground {
-    row: 8
-    column: 0
+    row: 18
+    column: 6
     widthSize: 2
+    heightSize: 6
   }
   Qblock{
+      row: 18
+      column: 12
   }
   Platform {
-    row: 3
+    row: 4
     column: 5
     widthSize: 4
   }
@@ -49,9 +49,22 @@ Levels.LevelBase {
     column: 9
     widthSize: 4
   }
+  Coin{
+      row: 8
+      column: 10
+  }
+  Coin{
+      row: 8
+      column: 11
+  }
   Spike{
       row: 4
       column: 7
       widthSize:2
+  }
+  Platform {
+    row: 12
+    column: 9
+    widthSize: 6
   }
 }

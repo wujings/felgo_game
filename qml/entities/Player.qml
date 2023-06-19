@@ -14,6 +14,7 @@ EntityBase {
     property int healthPoint:1
     property bool alive: true
     property int jumpCount:0
+    property int coinsCount: 0
   // property binding to determine the state of the player like described above
     state: "standing"
     onStateChanged: console.debug("player.state " + state)
@@ -37,6 +38,12 @@ EntityBase {
       frameNames: ["marioS-0.png", "marioS-1.png", "marioS-2.png", "marioS-3.png"]
       to: { "stand": 3}
       frameRate: 5
+    }
+    TexturePackerSprite {
+      name: "die"
+      source: "../../assets/marioS/marioS.json"
+      frameNames: ["marioS-8.png", "marioS-9.png"]
+      frameRate: 3
     }
     TexturePackerSprite {
       name: "jump"
@@ -76,6 +83,7 @@ EntityBase {
         var otherEntity = other.getBody().target
         if(otherEntity.entityType === "coin"){
             console.debug("coins collect")
+            ++player.coinsCount
             otherEntity.collect()
         }
         else if(otherEntity.entityType === "goomba") {
@@ -91,7 +99,7 @@ EntityBase {
   }
   BoxCollider{
       id:killCollider
-      width:12
+      width:14
       height: 5
 
       collisionTestingOnlyMode: true
@@ -157,14 +165,14 @@ EntityBase {
             if(Math.abs(player.horizontalVelocity) > 10)
                 player.horizontalVelocity /= 1.5
             else
-                    player.horizontalVelocity = 0
+                 player.horizontalVelocity = 0
         }
         }
     }
 
     function jump() {
         console.debug("jump requested at player.state " + state)
-        if(player.jumpCount < 2) {
+        if(player.jumpCount < 1) {
             console.debug("do the jump")
             // for the jump, we simply set the upwards velocity of the collider
             collider.linearVelocity.y = -400
@@ -174,6 +182,7 @@ EntityBase {
     function die(){
         jump()
         console.debug("player die")
+        sprite.jumpTo("die")
         alive = false
         collider.linearVelocity.x =0
     }

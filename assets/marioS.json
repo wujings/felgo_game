@@ -2,7 +2,7 @@
 
 "marioS-0.png":
 {
-	"frame": {"x":1,"y":29,"w":17,"h":21},
+	"frame": {"x":1,"y":1,"w":17,"h":21},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":5,"w":17,"h":21},
@@ -10,7 +10,7 @@
 },
 "marioS-1.png":
 {
-	"frame": {"x":1,"y":52,"w":17,"h":21},
+	"frame": {"x":20,"y":1,"w":17,"h":21},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":4,"w":17,"h":21},
@@ -18,7 +18,7 @@
 },
 "marioS-2.png":
 {
-	"frame": {"x":1,"y":29,"w":17,"h":21},
+	"frame": {"x":1,"y":1,"w":17,"h":21},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":5,"w":17,"h":21},
@@ -26,7 +26,7 @@
 },
 "marioS-3.png":
 {
-	"frame": {"x":1,"y":52,"w":17,"h":21},
+	"frame": {"x":20,"y":1,"w":17,"h":21},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":4,"w":17,"h":21},
@@ -34,7 +34,7 @@
 },
 "marioS-4.png":
 {
-	"frame": {"x":1,"y":29,"w":17,"h":21},
+	"frame": {"x":1,"y":1,"w":17,"h":21},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":5,"w":17,"h":21},
@@ -42,7 +42,7 @@
 },
 "marioS-5.png":
 {
-	"frame": {"x":1,"y":52,"w":17,"h":21},
+	"frame": {"x":20,"y":1,"w":17,"h":21},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":4,"w":17,"h":21},
@@ -50,7 +50,7 @@
 },
 "marioS-6.png":
 {
-	"frame": {"x":1,"y":29,"w":17,"h":21},
+	"frame": {"x":1,"y":1,"w":17,"h":21},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":5,"w":17,"h":21},
@@ -58,7 +58,7 @@
 },
 "marioS-7.png":
 {
-	"frame": {"x":1,"y":52,"w":17,"h":21},
+	"frame": {"x":20,"y":1,"w":17,"h":21},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":4,"w":17,"h":21},
@@ -66,18 +66,18 @@
 },
 "marioS-8.png":
 {
-	"frame": {"x":1,"y":1,"w":18,"h":26},
+	"frame": {"x":1,"y":1,"w":17,"h":21},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":9,"y":0,"w":18,"h":26},
+	"spriteSourceSize": {"x":8,"y":5,"w":17,"h":21},
 	"sourceSize": {"w":35,"h":28}
 },
 "marioS-9.png":
 {
-	"frame": {"x":1,"y":75,"w":16,"h":17},
-	"rotated": true,
+	"frame": {"x":1,"y":1,"w":17,"h":21},
+	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":10,"y":9,"w":16,"h":17},
+	"spriteSourceSize": {"x":8,"y":5,"w":17,"h":21},
 	"sourceSize": {"w":35,"h":28}
 }},
 "meta": {
@@ -85,8 +85,8 @@
 	"version": "1.0",
 	"image": "marioS.png",
 	"format": "RGBA8888",
-	"size": {"w":20,"h":92},
+	"size": {"w":38,"h":23},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:169401fef8fa5f83ed11ca4386ad6030:8579668249745c717a7315d090a91143:1f5b7b98669cd5f487f5f82d3a3f5287$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f962822553e6a92dd6934bb106ef4d9c:9c1f8a81d7bbf1cd32c1e94082b83aa4:1f5b7b98669cd5f487f5f82d3a3f5287$"
 }
 }

@@ -60,7 +60,7 @@ SceneBase {
       }
 
 //       you could load your levels Dynamically with a Loader component here
-      LevelTest{
+      Level1{
         id: level
       }
 
@@ -156,5 +156,14 @@ SceneBase {
                 player.changeSprite()
             }
         }
+    }
+    //HUD
+    HUDIcon {
+      id: coinsDisplay
+
+      text: "x "+player.coinsCount
+      icon.source: "../../assets/coins/coin-0.png"
+
+//      anchors.left: timeDisplay.right
     }
 }

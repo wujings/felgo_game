@@ -51,7 +51,7 @@ Monster{
     //hide afterdead timer
     Timer {
       id: hideTimer
-      interval: 500
+      interval:500
       onTriggered: {
         hidden = true
         goomba.destroy()
