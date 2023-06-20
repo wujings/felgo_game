@@ -1,6 +1,6 @@
 import Felgo 3.0
 import QtQuick 2.0
-
+import "../common"
 EntityBase {
     id: player
     entityType: "player"
@@ -15,6 +15,7 @@ EntityBase {
     property bool alive: true
     property int jumpCount:0
     property int coinsCount: 0
+
   // property binding to determine the state of the player like described above
     state: "standing"
     onStateChanged: console.debug("player.state " + state)
@@ -67,7 +68,7 @@ EntityBase {
         fixedRotation: true
 
         categories: Box.Category1
-        collidesWith: Box.Category3 | Box.Category5 | Box.Category6 | Box.Category7|Box.Category8
+        collidesWith: Box.Category3 | Box.Category5 | Box.Category6 | Box.Category7|Box.Category8|Box.Category9
 
         bullet: true
         sleepingAllowed: false
@@ -86,14 +87,16 @@ EntityBase {
             ++player.coinsCount
             otherEntity.collect()
         }
-        else if(otherEntity.entityType === "goomba") {
+
+        else if(otherEntity.entityType === "goomba"||otherEntity.entityType === "troopa") {
 //            console.debug("kill monster")
 //            otherEntity.getShot()
 //              jump()
-            console.debug("contact goomba begin")
+            console.debug("contact enemy")
             if(otherEntity.alive === true)
+                --player.healthPoint
+            if(player.healthPoint == 0)
                 player.die()
-
             }
         }
   }
@@ -144,6 +147,8 @@ EntityBase {
         // if colliding with opponent...
         if(otherEntity.entityType === "qblock") {
             console.debug("contact qblock")
+            otherEntity.trigger()
+//            ++player.healthPoint
 //            otherEntity.getShot()
 //              jump()
         }
@@ -166,7 +171,7 @@ EntityBase {
                 player.horizontalVelocity /= 1.5
             else
                  player.horizontalVelocity = 0
-        }
+            }
         }
     }
 
@@ -174,6 +179,7 @@ EntityBase {
         console.debug("jump requested at player.state " + state)
         if(player.jumpCount < 1) {
             console.debug("do the jump")
+            audioPlayer.playSound("playerJump")
             // for the jump, we simply set the upwards velocity of the collider
             collider.linearVelocity.y = -400
             jumpCount++

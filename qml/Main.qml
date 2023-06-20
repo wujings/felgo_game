@@ -9,6 +9,9 @@ GameWindow {
     screenWidth: 960
     screenHeight: 640
     state: "menu"
+    AudioPlayer{
+      id: audioPlayer
+    }
     GameScene {
         id: gameScene
     }

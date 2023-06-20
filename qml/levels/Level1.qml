@@ -9,9 +9,6 @@ Levels.LevelBase {
   id: level
 
   width: 42 * gameScene.gridSize // 42 because our last tile is a size 30 Ground at row 12
-  AudioPlayer{
-      id:audioPlayer
-  }
   // you could draw your level on a graph paper and then add the tiles here only by defining their row, column and size
   Goomba{
       row: 4
@@ -30,11 +27,12 @@ Levels.LevelBase {
   }
 
   Ground {
-    row: 18
-    column: 6
-    widthSize: 2
+    row: 24
+    column: 5
+    widthSize: 5
     heightSize: 6
   }
+
   Qblock{
       row: 18
       column: 12
@@ -46,6 +44,11 @@ Levels.LevelBase {
   }
   Platform {
     row: 8
+    column: 9
+    widthSize: 4
+  }
+  Platform {
+    row: 16
     column: 9
     widthSize: 4
   }

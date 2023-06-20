@@ -66,6 +66,7 @@ DISTFILES += \
     qml/entities/Coin.qml \
     qml/entities/Goomba.qml \
     qml/entities/Monster.qml \
+    qml/entities/Mushroom.qml \
     qml/entities/Qblock.qml \
     qml/entities/Spike.qml \
     qml/entities/Troopa.qml \

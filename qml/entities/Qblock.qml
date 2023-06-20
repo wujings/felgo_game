@@ -5,19 +5,22 @@ TiledEntityBase {
   id: qblock
   entityType: "qblock"
 
-    widthSize:2
-
-  Row{
-           id: tileRow
-           Repeater{
-               model: widthSize
-               MultiResolutionImage{
-                   width: gameScene.gridSize
-                   height: gameScene.gridSize
-                   source: "../../assets/qblock/qblock-0.png"
-               }
-           }
-       }
+   TexturePackerSpriteSequence {
+     id: sprite
+     width: gameScene.gridSize
+     height:gameScene.gridSize
+     anchors.centerIn: parent
+     TexturePackerSprite {
+       name: "default"
+       source: "../../assets/qblock/qblock.json"
+       frameNames: "qblock-0.png"
+     }
+     TexturePackerSprite {
+       name: "triggered"
+       source: "../../assets/qblock/qblock.json"
+       frameNames: ["qblock-1.png"]
+     }
+   }
   BoxCollider {
     id: collider
     anchors.fill: parent
@@ -28,7 +31,6 @@ TiledEntityBase {
       var otherEntity = other.getBody().target
       if(otherEntity.entityType === "player") {
         console.debug("contact qblock begin")
-
         // increase the number of active contacts the player has
         player.contacts++
       }
@@ -43,4 +45,8 @@ TiledEntityBase {
       }
     }
   }
+  function trigger(){
+        sprite.jumpTo("triggered")
+
+    }
 }

@@ -4,7 +4,10 @@ import Felgo 3.0
 Monster{
 id:troopa
 entityType: "troopa"
-property int speed:20
+property int speed:30
+property int verticalJumpForce: 510
+property int horizontalJumpForce: 40
+property bool alive:true
 //sprite setting
 TexturePackerSpriteSequence {
     id: sprite
@@ -46,19 +49,37 @@ PolygonCollider {
     // make sure the speed is constant
     linearVelocity.x = direction * speed
   }
+  fixture.onContactChanged: {
+    var otherEntity = other.getBody().target
+
+    // When the opponent stands on a solid object, we want it
+    // to wait a little and then jump again.
+    // Since we set the collidesWith property, we can be sure
+    // that it won't collide with any unwanted entities.
+    if(collider.linearVelocity.y === 0 &&alive==true)
+      jumpTimer.start()
+  }
 
 }
 //hide afterdead timer
     Timer {
       id: hideTimer
       interval: 1500
-      onTriggered: hidden = true
+      onTriggered: {
+        hidden = true
+        troopa.destroy()
+      }
     }
     Timer{
         id:jumpTimer
-        interval:1000
+        interval:3000
 //        autoplay:true
-        onTriggered:collider.linearVelocity.y = -300
+        onTriggered:{
+            // jump in the current direction
+            collider.applyLinearImpulse(Qt.point(direction * horizontalJumpForce, -verticalJumpForce))
+            // alternate direction after every jump
+            direction *= -1
+          }
     }
 //call when die
     function getShot() {
