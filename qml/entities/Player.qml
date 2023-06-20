@@ -6,6 +6,8 @@ EntityBase {
     entityType: "player"
     width: 28
     height: 21
+    property bool isBig: false
+    scale: isBig ? 1.5 : 1
 
   // add some aliases for easier access to those properties from outside
     property alias collider: collider
@@ -58,8 +60,8 @@ EntityBase {
 
     BoxCollider {
         id: collider
-        height: 20
-        width: 18
+        height: 20*parent.scale
+        width: 18*parent.scale
         anchors.horizontalCenter: parent.horizontalCenter
         // this collider must be dynamic because we are moving it by applying forces and impulses
 
@@ -87,7 +89,11 @@ EntityBase {
             ++player.coinsCount
             otherEntity.collect()
         }
-
+        else if(otherEntity.entityType === "mushroom"){
+            console.debug("mushroom collect")
+            otherEntity.collect()
+            player.isBig = true
+        }
         else if(otherEntity.entityType === "goomba"||otherEntity.entityType === "troopa") {
 //            console.debug("kill monster")
 //            otherEntity.getShot()

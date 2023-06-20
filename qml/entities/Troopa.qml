@@ -45,7 +45,7 @@ PolygonCollider {
     // if the opponent stops moving, reverse direction
     if(linearVelocity.x === 0)
       direction *= -1
-
+       sprite.mirror=true
     // make sure the speed is constant
     linearVelocity.x = direction * speed
   }

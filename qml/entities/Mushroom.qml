@@ -14,9 +14,10 @@ EntityBase {
     // this property is true when the player collected the coin
     property bool collected: false
     MultiResolutionImage{
-        width: 10
-        height: 10
-        source: "../../assets/qblock/qblock-0.png"
+        id:img
+        width: gameScene.gridSize-3
+        height: gameScene.gridSize-3
+        source: "../../assets/mushroom.png"
     }
     CircleCollider {
       id: collider

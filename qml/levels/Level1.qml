@@ -14,10 +14,7 @@ Levels.LevelBase {
       row: 4
       column: 6
   }
-  Troopa{
-      x:60
-      y:100
-  }
+
 
   Ground {
     row: 0
@@ -29,8 +26,24 @@ Levels.LevelBase {
   Ground {
     row: 24
     column: 5
-    widthSize: 5
+    widthSize: 8
     heightSize: 6
+  }
+  Troopa{
+      row:26
+      column:7
+  }
+  Coin{
+      row: 24
+      column: 7
+  }
+  Coin{
+      row: 25
+      column: 8
+  }
+  Coin{
+      row: 26
+      column: 9
   }
 
   Qblock{
@@ -42,6 +55,10 @@ Levels.LevelBase {
     column: 5
     widthSize: 4
   }
+  Mushroom{
+    row:7
+    column:6
+  }
   Platform {
     row: 8
     column: 9
@@ -52,6 +69,11 @@ Levels.LevelBase {
     column: 9
     widthSize: 4
   }
+  Goomba{
+      row: 16
+      column: 10
+  }
+
   Coin{
       row: 8
       column: 10
@@ -60,6 +82,7 @@ Levels.LevelBase {
       row: 8
       column: 11
   }
+
   Spike{
       row: 4
       column: 7
