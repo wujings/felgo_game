@@ -30,7 +30,7 @@ Levels.LevelBase {
     heightSize: 6
   }
   Troopa{
-      row:26
+      row:24
       column:7
   }
   Coin{
@@ -92,5 +92,55 @@ Levels.LevelBase {
     row: 12
     column: 9
     widthSize: 6
+  }
+  Platform {
+    row: 32
+    column: 9
+    widthSize: 5
+  }
+  Spike{
+      row: 38
+      column: 6
+      widthSize:3
+  }
+  Ground {
+    row: 43
+    column: 5
+    widthSize: 1
+    heightSize: 7
+  }
+  Ground {
+    row: 44
+    column: 5
+    widthSize: 12
+    heightSize: 6
+  }
+  Troopa{
+      row:47
+      column:7
+  }
+  Goomba{
+      row: 48
+      column: 6
+  }
+  Platform {
+    row: 52
+    column: 9
+    widthSize: 8
+  }
+  Goomba{
+      row: 55
+      column: 12
+  }
+  Ground {
+    row: 64
+    column: 1
+    widthSize: 12
+    heightSize: 2
+  }
+  Spike{
+      row: 64
+      column: 2
+      widthSize:3
   }
 }

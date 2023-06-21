@@ -24,7 +24,7 @@ EntityBase {
       id: collider
 
       // make the collider a little smaller than the sprite
-      radius: 5
+      radius: 6
       // center collider
       x: 3
       y: 3

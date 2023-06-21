@@ -16,7 +16,7 @@ EntityBase {
     MultiResolutionImage{
         id:img
         width: gameScene.gridSize-3
-        height: gameScene.gridSize-3
+        height: gameScene.gridSize
         source: "../../assets/mushroom.png"
     }
     CircleCollider {

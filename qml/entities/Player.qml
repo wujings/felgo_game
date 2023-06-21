@@ -7,14 +7,17 @@ EntityBase {
     width: 28
     height: 21
     property bool isBig: false
-    scale: isBig ? 1.5 : 1
+    scale: isBig ? 1.3 : 1
 
   // add some aliases for easier access to those properties from outside
     property alias collider: collider
     property alias horizontalVelocity: collider.linearVelocity.x
     property int contacts: 0
     property int healthPoint:1
+
     property bool alive: true
+    property int speed:120
+
     property int jumpCount:0
     property int coinsCount: 0
 
@@ -75,12 +78,12 @@ EntityBase {
         bullet: true
         sleepingAllowed: false
         // apply the horizontal value of the TwoAxisController as force to move the player left and right
-        force: Qt.point(controller.xAxis*130*24,0)
+        force: Qt.point(controller.xAxis*speed*24,0)
         // limit the horizontal velocity
         onLinearVelocityChanged: {
             player.state = "walking"
-            if(linearVelocity.x > 130) linearVelocity.x = 130
-            if(linearVelocity.x < -130) linearVelocity.x = -130
+            if(linearVelocity.x > speed) linearVelocity.x = speed
+            if(linearVelocity.x < -speed) linearVelocity.x = -speed
         }
         fixture.onBeginContact: {
         var otherEntity = other.getBody().target
@@ -93,14 +96,18 @@ EntityBase {
             console.debug("mushroom collect")
             otherEntity.collect()
             player.isBig = true
+            ++healthPoint
         }
         else if(otherEntity.entityType === "goomba"||otherEntity.entityType === "troopa") {
 //            console.debug("kill monster")
 //            otherEntity.getShot()
 //              jump()
             console.debug("contact enemy")
-            if(otherEntity.alive === true)
+            if(otherEntity.alive === true){
                 --player.healthPoint
+                player.isBig == false
+                player.scale=1
+            }
             if(player.healthPoint == 0)
                 player.die()
             }
@@ -108,8 +115,8 @@ EntityBase {
   }
   BoxCollider{
       id:killCollider
-      width:14
-      height: 5
+      width:14*scale
+      height: 5*scale
 
       collisionTestingOnlyMode: true
       anchors.horizontalCenter: parent.horizontalCenter
@@ -127,6 +134,7 @@ EntityBase {
         if(otherEntity.entityType === "goomba"||otherEntity.entityType === "troopa") {
             console.debug("kill "+entityType)
             otherEntity.getShot()
+            player.jumpCount--
               jump()
         }
         // else if colliding with another solid object...
@@ -135,8 +143,8 @@ EntityBase {
   }
   BoxCollider{
       id:upCollider //this Collider is used to trigger qblock
-      width:12
-      height: 3
+      width:12*scale
+      height: 3*scale
 
       collisionTestingOnlyMode: true
       anchors.horizontalCenter: parent.horizontalCenter
@@ -154,6 +162,7 @@ EntityBase {
         if(otherEntity.entityType === "qblock") {
             console.debug("contact qblock")
             otherEntity.trigger()
+            ++player.healthPoint
 //            ++player.healthPoint
 //            otherEntity.getShot()
 //              jump()
@@ -187,7 +196,7 @@ EntityBase {
             console.debug("do the jump")
             audioPlayer.playSound("playerJump")
             // for the jump, we simply set the upwards velocity of the collider
-            collider.linearVelocity.y = -400
+            collider.linearVelocity.y = -(gameScene.gridSize*18)
             jumpCount++
         }
     }

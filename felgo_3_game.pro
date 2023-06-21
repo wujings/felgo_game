@@ -70,6 +70,7 @@ DISTFILES += \
     qml/entities/Qblock.qml \
     qml/entities/Spike.qml \
     qml/entities/Troopa.qml \
+    qml/entities/endPoint.qml \
     qml/forcePortraitLandscape.js \
     qml/levels/Level1.qml \
     qml/scenes/MenuScene.qml \
