@@ -1,5 +1,5 @@
 import Felgo 3.0
-import QtQuick 2.0
+import QtQuick 2.15
 import "../"
 
 SceneBase {
@@ -8,15 +8,15 @@ SceneBase {
   // signal indicating that the gameScene should be displayed
   signal gameScenePressed
   // background image
-  Image {
-    anchors.fill: menuScene.gameWindowAnchorItem
-//    source: "../../assets/menuBackground.png"
-  }
-  //     filled the screen with blue
-      Rectangle {
+    Image {
+        anchors.fill: menuScene.gameWindowAnchorItem
+        //    source: "../../assets/menuBackground.png"
+    }
+    //     filled the screen with blue
+    Rectangle {
         anchors.fill: menuScene.gameWindowAnchorItem
         color: "#74d6f7"
-      }
+    }
   // column aligns its child components within a column
   Column {
     anchors.centerIn: parent
@@ -33,13 +33,10 @@ SceneBase {
             color: "black"
             font.pixelSize: 21
        }
-
-
-      MouseArea {
-        id: gameSceneMouseArea
-        anchors.fill: parent
-        onClicked: gameScenePressed()
-      }
+       TapHandler {
+           acceptedPointerTypes: PointerDevice.GenericPointer | PointerDevice.Finger | PointerDevice.Pen
+           onTapped: gameScenePressed()
+       }
     }
 
     // option button
@@ -58,11 +55,10 @@ SceneBase {
            color: "black"
            font.pixelSize: 21
       }
-      MouseArea {
-        id: optionSceneMouseArea
-        anchors.fill: parent
-//        onClicked:
-      }
+//      TapHandler {
+//          acceptedPointerTypes: PointerDevice.GenericPointer | PointerDevice.Finger | PointerDevice.Pen
+//          onTapped: gameScenePressed()
+//      }
     }
   }
 }
