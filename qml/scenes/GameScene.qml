@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.15
 import Felgo 3.0
 import"../entities"
 import"../levels"
@@ -18,7 +18,7 @@ SceneBase {
 
     Image {
       anchors.fill: menuScene.gameWindowAnchorItem
-//      source: "../../assets/gameBackground.png"
+      source: "../../assets/background.png"
     }
 
 //     filled the screen with blue
@@ -80,11 +80,10 @@ SceneBase {
           player.x = 20
           player.y = 100
         }
-        // this is just for you to see how the sensor moves, in your real game, you should position it lower, outside of the visible area
-        Rectangle {
+        Rectangle {//teset sensor test
           anchors.fill: parent
           color: "yellow"
-          opacity: 0.5
+          opacity: 0
         }
       }
     }
@@ -139,9 +138,9 @@ SceneBase {
         color: "white"
         font.pixelSize: 9
       }
-      MouseArea {
-        anchors.fill: parent
-        onPressed: player.jump()
+      TapHandler {
+          acceptedPointerTypes: PointerDevice.GenericPointer | PointerDevice.Finger | PointerDevice.Pen
+          onTapped: player.jump()
       }
     }
     Keys.forwardTo: controller

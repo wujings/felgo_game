@@ -46,7 +46,6 @@ Monster{
         // make sure the speed is constant
         linearVelocity.x = direction * speed
       }
-
     }
     //hide afterdead timer
     Timer {
@@ -88,6 +87,29 @@ Monster{
 //        fixture.onBeginContact: contacts++
 //        fixture.onEndContact: if(contacts > 0) contacts--
 //    }
+    function reset()
+    {
+        // reset alive property
+        alive = true
 
+        // stop hideTimer, to avoid unwanted, delayed hiding of the opponent
+        hideTimer.stop()
+        // reset hidden
+        hidden = false
+        hideTimer.stop()
+        // reset hidden
+        hidden = false
+
+        // reset position
+        x=row*gameScene.gridSize
+        y=level.height - (column+1)*gameScene.gridSize
+
+        // reset velocity
+        collider.linearVelocity.x = 0
+        collider.linearVelocity.y = 0
+
+        // reset force
+        collider.force = Qt.point(0, 0)
+    }
 }
 

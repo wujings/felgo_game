@@ -42,7 +42,7 @@ EntityBase {
       name: "walk"
       source: "../../assets/marioS/marioS.json"
       frameNames: ["marioS-0.png", "marioS-1.png", "marioS-2.png", "marioS-3.png"]
-      to: { "stand": 3}
+//      to: { "stand": 3}
       frameRate: 5
     }
     TexturePackerSprite {
@@ -73,7 +73,7 @@ EntityBase {
         fixedRotation: true
 
         categories: Box.Category1
-        collidesWith: Box.Category3 | Box.Category5 | Box.Category6 | Box.Category7|Box.Category8|Box.Category9
+        collidesWith: Box.Category3 | Box.Category5 | Box.Category6 | Box.Category7|Box.Category8|Box.Category9|Box.Category13
 
         bullet: true
         sleepingAllowed: false
@@ -139,7 +139,6 @@ EntityBase {
         }
         // else if colliding with another solid object...
       }
-
   }
   BoxCollider{
       id:upCollider //this Collider is used to trigger qblock
@@ -206,6 +205,7 @@ EntityBase {
         sprite.jumpTo("die")
         alive = false
         collider.linearVelocity.x =0
+        gameWindow.state="dead"
     }
     //when player walk or jump change sprite
     function changeSprite(){

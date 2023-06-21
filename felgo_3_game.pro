@@ -64,14 +64,15 @@ DISTFILES += \
     qml/Controller.qml \
     qml/GameScene.qml \
     qml/entities/Coin.qml \
+    qml/entities/EndPoint.qml \
     qml/entities/Goomba.qml \
     qml/entities/Monster.qml \
     qml/entities/Mushroom.qml \
     qml/entities/Qblock.qml \
     qml/entities/Spike.qml \
     qml/entities/Troopa.qml \
-    qml/entities/endPoint.qml \
     qml/forcePortraitLandscape.js \
     qml/levels/Level1.qml \
+    qml/scenes/DeadScene.qml \
     qml/scenes/MenuScene.qml \
     qml/scenes/SceneBase.qml

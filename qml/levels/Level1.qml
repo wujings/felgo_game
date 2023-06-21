@@ -139,8 +139,47 @@ Levels.LevelBase {
     heightSize: 2
   }
   Spike{
-      row: 64
-      column: 2
+      row: 65
+      column: 6
       widthSize:3
+  }
+  Platform {
+    row: 78
+    column: 2
+    widthSize: 3
+  }
+  Platform {
+    row: 85
+    column: 3
+    widthSize: 3
+  }
+  Platform {
+    row: 92
+    column: 4
+    widthSize: 3
+  }
+  Platform {
+    row: 88
+    column: 8
+    widthSize: 4
+  }
+  Platform {
+    row: 98
+    column: 11
+    widthSize: 5
+  }
+  Goomba{
+      row: 100
+      column: 12
+  }
+  Ground {
+    row: 103
+    column: 5
+    widthSize: 3
+    heightSize: 7
+  }
+  EndPoint{
+      row:104
+      column: 6
   }
 }

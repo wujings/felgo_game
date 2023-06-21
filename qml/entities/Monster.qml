@@ -8,8 +8,14 @@ EntityBase {
     signal contact
     property int column
     property int row
+
+
+
     x: row*gameScene.gridSize
     y: level.height - (column+1)*gameScene.gridSize
+
+//    property int startX:x
+//    property int startY:y
 
     property bool hidden: false
     property bool alive: true
