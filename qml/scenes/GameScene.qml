@@ -43,7 +43,7 @@ SceneBase {
       PhysicsWorld {
         id: physicsWorld
         gravity: Qt.point(0, 25)
-        debugDrawVisible: true // enable this for physics debugging
+//        debugDrawVisible: true // enable this for physics debugging
         z: 1000
 
         onPreSolve: {
