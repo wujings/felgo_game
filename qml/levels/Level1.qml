@@ -84,8 +84,7 @@ Levels.LevelBase {
   }
 
   Spike{
-      row: 4
-      column: 7
+
       widthSize:2
   }
   Platform {

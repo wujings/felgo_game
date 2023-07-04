@@ -76,7 +76,9 @@ PolygonCollider {
 //        autoplay:true
         onTriggered:{
             // jump in the current direction
-            collider.applyLinearImpulse(Qt.point(direction * horizontalJumpForce, -verticalJumpForce))
+//            collider.applyLinearImpulse(Qt.point(direction * horizontalJumpForce, -verticalJumpForce))
+            collider.linearVelocity.y = -(gameScene.gridSize*18)
+
             // alternate direction after every jump
             direction *= -1
           }

@@ -4,7 +4,7 @@ import "../common"
 EntityBase {
     id: player
     entityType: "player"
-    width: 28
+    width: 18
     height: 21
     property bool isBig: false
     scale: isBig ? 1.3 : 1
@@ -115,7 +115,7 @@ EntityBase {
   }
   BoxCollider{
       id:killCollider
-      width:14*scale
+      width:18*scale
       height: 5*scale
 
       collisionTestingOnlyMode: true

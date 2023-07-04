@@ -1,0 +1,30 @@
+felgo马里奥平台跳跃 项目开发文档
+王修悟2021051615169
+　　　
+　　　本项目基于felgo3.0开发，主要功能使用felgo游戏引擎中的物理引擎实现，人物可以跑动跳跃，击杀敌人，达到目的地即为通关。因单人开发目前仅一个关卡：主要场景有三个：菜单 游戏 死亡，继承SceneBase类
+分别在启动游戏 游戏过程中 死亡时展示
+胜利场景未实装但已经做出
+
+继承了felgo中实体类EntityBase的类主要分为三种
+瓦块（tile） ：以TileEntityBase为父类，负责作为场景主要的组成部分
+其中Ground由两种贴图组成，通过列和宽摆放作为地面，Platform作为跳板供跳跃，Spike为触碰就会死亡的陷阱
+
+Player和Monster是两种活动实体。使用了felgo支持的texturepackersprite精灵图实现了基本的动画效果
+Player由玩家操控，通过场景中的TwoAxisController移动。有三个BoxCollider碰撞区移动，Jump函数更改Y轴跳跃。同时，JumpCount属性控制了玩家的跳跃次数，如果玩家触碰到平台等实体可以重置JumpCount，healthPoint控制玩家死亡，默认为1点
+Monster有Goomba和Troopa两种，皆来自经典的马里奥游戏，都有死亡函数，其中troopa会跳跃，使用一个Timer()计时器控制跳跃
+
+Coin可以被玩家收集并统计，在左上角显示收集数量
+Mushroom可以让玩家变大并获得一点healthPoint
+
+在关卡类中，通过row和column统一设置实体的位置
+    property int column
+    property int row
+
+    x: row*gameScene.gridSize
+　　y: level.height - (column+1)*gameScene.gridSize
+　　
+　　通过预先定义的column和row,可以计算出符合场景的x和y,从而统一的设置实体的位置。Gridsize默认为24,将游戏场景分割成一个个统一大小的grid,从而使物件摆放更整齐。
+　　
+音频的控制由AudioPlayer类的函数startMusic和playSound负责，在需要播放音频时调用函数传递需要播放的音频名即可
+
+菜单的按钮统一使用了TapHandler处理案件事件

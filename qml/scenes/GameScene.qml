@@ -16,15 +16,15 @@ SceneBase {
       id: entityManager
     }
 
-    Image {
-      anchors.fill: menuScene.gameWindowAnchorItem
-      source: "../../assets/background.png"
-    }
+//    Image {
+//      anchors.fill: menuScene.gameWindowAnchorItem
+//      source: "../../assets/background.png"
+//    }
 
 //     filled the screen with blue
     Rectangle {
-      anchors.fill: gameScene.gameWindowAnchorItem
-      color: "#74d6f7"
+        anchors.fill: gameScene.gameWindowAnchorItem
+        color: "#74d6f7"
     }
 
 //    Text {

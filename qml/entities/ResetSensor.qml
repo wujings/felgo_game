@@ -9,7 +9,7 @@ EntityBase {
 
   Text {
     anchors.centerIn: parent
-    text: "reset sensor"
+//    text: "reset sensor"
     color: "white"
     font.pixelSize: 9
   }

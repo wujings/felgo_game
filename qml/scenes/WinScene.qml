@@ -42,28 +42,6 @@ SceneBase {
                  onTapped: retryPressed()
              }
           }
-
-          // option button
-          Rectangle {
-            width: 150
-            height: 50
-            color: "#F0E68C"
-            Image {
-              id: optionSceneButton
-      //        source: "../../assets/.png"
-              anchors.centerIn: parent
-            }
-            Text{
-                 text:"exit"
-                 anchors.centerIn: parent
-                 color: "black"
-                 font.pixelSize: 21
-            }
-      //      TapHandler {
-      //          acceptedPointerTypes: PointerDevice.GenericPointer | PointerDevice.Finger | PointerDevice.Pen
-      //          onTapped: gameScenePressed()
-      //      }
-          }
         }
 
 }

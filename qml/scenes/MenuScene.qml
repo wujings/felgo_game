@@ -50,15 +50,15 @@ SceneBase {
         anchors.centerIn: parent
       }
       Text{
-           text:"option"
+           text:"exit"
            anchors.centerIn: parent
            color: "black"
            font.pixelSize: 21
       }
-//      TapHandler {
-//          acceptedPointerTypes: PointerDevice.GenericPointer | PointerDevice.Finger | PointerDevice.Pen
-//          onTapped: gameScenePressed()
-//      }
+      TapHandler {
+          acceptedPointerTypes: PointerDevice.GenericPointer | PointerDevice.Finger | PointerDevice.Pen
+          onTapped: Qt.quit()
+      }
     }
   }
 }

@@ -6,10 +6,12 @@ import Felgo 3.0
 SceneBase {
     id:deadScene
     signal retryPressed
-    Rectangle {
-        anchors.fill: gameScene.gameWindowAnchorItem
-      color: "#74d6f7"
-    }
+//    Rectangle {
+//        anchors.fill: gameScene.gameWindowAnchorItem
+//      color: "blue"
+//    }
+//    BackgroundImage:
+
     // column aligns its child components within a column
     Column {
       anchors.centerIn: parent
@@ -17,8 +19,8 @@ SceneBase {
       Rectangle {
         width: 150
         height: 50
-        color: "white"
-        opacity: 0.4
+        color: parent
+//        opacity: 0.4
          Text{
               text:"game over"
               anchors.centerIn: parent
@@ -61,7 +63,7 @@ SceneBase {
         }
             TapHandler {
                 acceptedPointerTypes: PointerDevice.GenericPointer | PointerDevice.Finger | PointerDevice.Pen
-//                onTapped:
+                onTapped:Qt.quit()
             }
           }
         }
